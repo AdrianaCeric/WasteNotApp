@@ -1,5 +1,6 @@
 # WasteNot App 🍉
 <img src="img/Devpost Cover.png"/>
+
 ## Inspiration
 According to the National Resources Defense Council, 40% of the food produced in America goes uneaten. This translates to about **$218 billion worth** of food that the nation wastes every year. One of the most significant reasons behind this is the misinterpretation of expiry or "best before" labels. Not only do these differ from country to country, but also from product to product. Thus, most consumers mistakenly believe date labels are safety indicators, which is why 90% report throwing away food once the expiration date arrives. Additionally, many consumers simply forget their fresh produce in their fridge or pantry.
 
@@ -9,7 +10,6 @@ This food waste is also taking a **big toll on our environment**. First, the res
 
 ## What it does
 This is where WasteNot comes in. This mobile app reduces food waste by reminding the user about the items in their fridge before their projected expiry date.
-<img src="img/waste-not-app.PNG"/>
 
 ## How we built it
 
