@@ -7,7 +7,7 @@ This food waste is also taking a **big toll on our environment**. First, the res
 **We need a universal, reliable, and accurate app that tracks these dates.**
 
 ## What it does
-![image](\Downloads\Devpost Cover.png)
+![image](img/Devpost Cover.png)
 This is where WasteNot comes in. This mobile app reduces food waste by reminding the user about the items in their fridge before their projected expiry date
 
 ## How we built it
