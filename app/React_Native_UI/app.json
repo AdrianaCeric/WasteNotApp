@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "WasteNot",
+    "slug": "WasteNot",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/favicon_square.png",
+    "splash": {
+      "image": "./assets/images/Devpost Cover.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/favicon_square.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/favicon_square.png"
+    },
+    "description": "This mobile app reduces food waste by reminding the user about the items in their fridge before their projected expiry date",
+    "githubUrl": "https://github.com/AdrianaCeric/WasteNotApp"
+  }
+}

@@ -1,0 +1,76 @@
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:700');
+* {
+  box-sizing: border-box;
+}
+.border-class-1 {
+  border: 1px solid transparent;
+}
+.font-class-1 {
+  color: transparent;
+  font-family: "Roboto Slab", Helvetica, Arial, serif;
+  font-size: 32px;
+  letter-spacing: 0.10px;
+  line-height: 24px;
+}
+.loading-screen {
+  align-items: flex-start;
+  background-color: white;
+  display: inline-flex;
+  flex-direction: row;
+  height: 736px;
+  justify-content: flex-start;
+  min-width: 414px;
+  padding: 0 72px;
+  width: auto;
+}
+.loading-screen .frame-1 {
+  align-items: flex-start;
+  background-color: transparent;
+  display: inline-flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 82px;
+  justify-content: flex-start;
+  margin-top: 314px;
+  min-width: 262px;
+  width: auto;
+}
+.loading-screen .span1-ZWxCAD {
+  color: rgba(241,74,74,1.0);
+  font-family: 'Roboto Slab', Helvetica, Arial, serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.10px;
+  line-height: 24px;
+}
+.loading-screen .span2-ZWxCAD {
+  color: rgba(71,155,90,1.0);
+  font-family: 'Roboto Slab', Helvetica, Arial, serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.10px;
+  line-height: 24px;
+}
+.loading-screen .wastenot {
+  align-self: center;
+  background-color: transparent;
+  flex-shrink: 0;
+  height: 24px;
+  margin-bottom: 4.0px;
+  margin-left: 9px;
+  min-height: 24px;
+  min-width: 162px;
+  text-align: left;
+  white-space: nowrap;
+  width: auto;
+}
+.loading-screen .wastenot-1 {
+  background-color: transparent;
+  flex-shrink: 0;
+  height: 79px;
+  width: 95px;
+}
