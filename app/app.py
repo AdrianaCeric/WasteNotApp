@@ -1,5 +1,4 @@
-from db import db
-from db import Item, Run
+import db
 from datetime import datetime
 from flask import Flask, request
 import json 
@@ -11,9 +10,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///%s" % db_filename
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 
-db.init_app(app)
+db.db.init_app(app)
 with app.app_context():
-    db.create_all()
+    db.db.create_all()
 
 def success_response(data, code=200):
     return json.dumps({"success": True, "data": data}), code
@@ -25,7 +24,7 @@ def failure_response(message, code=404):
 @app.route('/')
 @app.route('/api/items/')
 def get_all_items():
-    data = [i.serialize() for i in Item.query.all()]
+    data = [i.serialize() for i in db.Item.query.all()]
     sort = request.args.get('sort')
     if sort == "increasing":
         data = sorted(data, key=lambda k: k['expiry_date']) 
@@ -47,14 +46,14 @@ def create_item(run_id = None):
         return failure_response("Missing category")
     elif body.get("category") != "pantry" and body.get("category") != "fridge" and body.get("category") != "freezer":
         return failure_response("Invalid category")
-    new_item = Item(name=body.get("name"), purchase_date=body.get("purchase_date"), expiry_date=body.get("expiry_date"), notes=body.get("notes", ""), category=body.get("category"), run_id=run_id)
+    new_item = db.Item(name=body.get("name"), purchase_date=body.get("purchase_date"), expiry_date=body.get("expiry_date"), notes=body.get("notes", ""), category=body.get("category"), run_id=run_id)
     db.session.add(new_item)
     db.session.commit()
     return success_response(new_item.serialize(), 201)
 
 @app.route('/api/items/<int:item_id>/', methods=['POST'])
 def update_item(item_id):
-    item = Item.query.filter_by(id = item_id).first() 
+    item = db.Item.query.filter_by(id = item_id).first() 
     if item is None:
         return failure_response("Item not found")
     body = json.loads(request.data)
@@ -70,7 +69,7 @@ def update_item(item_id):
 
 @app.route('/api/items/<int:item_id>/')
 def get_item(item_id):
-    item = Item.query.filter_by(id = item_id).first()
+    item = db.Item.query.filter_by(id = item_id).first()
     if item is None:
         return failure_response("Item not found")
     return success_response(item.serialize())
@@ -80,7 +79,7 @@ def get_items_by_category():
     body = json.loads(request.data)
     if body.get("category") != "pantry" and body.get("category") != "fridge" and body.get("category") != "freezer":
         return failure_response("Invalid category")
-    items = [i.serialize() for i in Item.query.filter_by(category=body.get("category"))]
+    items = [i.serialize() for i in db.Item.query.filter_by(category=body.get("category"))]
     sort = request.args.get('sort')
     if sort == "increasing":
         data = sorted(items, key=lambda k: k['expiry_date']) 
@@ -90,7 +89,7 @@ def get_items_by_category():
 
 @app.route('/api/items/<int:item_id>/', methods=['DELETE'])
 def delete_item(item_id):
-    item = Item.query.filter_by(id=item_id).first()
+    item = db.Item.query.filter_by(id=item_id).first()
     if item is None:
         return failure_response("Item not found")
     db.session.delete(item)
@@ -103,14 +102,14 @@ def create_run():
     body = json.loads(request.data)
     if body.get("date") is None: 
         return failure_response("Missing date")
-    new_run = Run(date = body.get("date"))
+    new_run = db.Run(date = body.get("date"))
     db.session.add(new_run)
     db.session.commit()
     return success_response(new_run.serialize(), 201)
 
 @app.route('/api/runs/')
 def get_runs():
-    data = [r.serialize() for r in Run.query.all()]
+    data = [r.serialize() for r in db.Run.query.all()]
     sort = request.args.get('sort')
     if sort == "increasing":
         data = sorted(data, key=lambda k: k['expiry_date']) 
@@ -120,14 +119,14 @@ def get_runs():
 
 @app.route('/api/runs/<int:run_id>/')
 def get_run(run_id):
-    run = Run.query.filter_by(id = run_id).first()
+    run = db.Run.query.filter_by(id = run_id).first()
     if run is None:
         return failure_response("Run not found")
     return success_response(run.serialize())
 
 @app.route('/api/runs/<int:run_id>/', methods=['POST'])
 def update_run(run_id):
-    run = Run.query.filter_by(id = run_id).first() 
+    run = db.Run.query.filter_by(id = run_id).first() 
     if run is None:
         return failure_response("Run not found")
     body = json.loads(request.data)
@@ -137,7 +136,7 @@ def update_run(run_id):
 
 @app.route('/api/runs/<int:run_id>/', methods=['DELETE'])
 def delete_run(run_id):
-    run = Run.query.filter_by(id=run_id).first()
+    run = db.Run.query.filter_by(id=run_id).first()
     if run is None:
         return failure_response("Run not found")
     db.session.delete(run)
